@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ping Company
+</title>
 </head>
 <body>
 <h2>Ping Company Home Page</h2>
