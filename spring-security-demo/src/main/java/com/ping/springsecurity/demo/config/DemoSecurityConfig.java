@@ -15,9 +15,15 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin()
+		http.authorizeRequests()
+		//.anyRequest().authenticated()
+		.antMatchers("/").hasRole("EMPLOYEE")
+		.antMatchers("/leaders/**").hasRole("MANAGER")
+		.antMatchers("/systems/**").hasRole("ADMIN")
+		.and().formLogin()
 		.loginPage("/showMyLoginPage").loginProcessingUrl("/authenticateTheUser").permitAll()
-		.and().logout().permitAll();
+		.and().logout().permitAll()
+		.and().exceptionHandling().accessDeniedPage("/access-denied");
 	}
 
 	@Override
@@ -28,8 +34,8 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		auth.inMemoryAuthentication()
 		.withUser(usersBuilder.username("john").password("test123").roles("EMPLOYEE"))
-		.withUser(usersBuilder.username("mary").password("test123").roles("MANAGER"))
-		.withUser(usersBuilder.username("susan").password("test123").roles("EMPLOYEE"));
+		.withUser(usersBuilder.username("mary").password("test123").roles("EMPLOYEE","MANAGER"))
+		.withUser(usersBuilder.username("susan").password("test123").roles("EMPLOYEE", "ADMIN"));
 	}
 
 }

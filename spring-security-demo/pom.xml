@@ -49,7 +49,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-
+		<!-- add spring security Taglibs support -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
 		<!-- Servlet, JSP and JSTL support -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
